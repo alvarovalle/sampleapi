@@ -1,4 +1,6 @@
-﻿namespace Api.Routes;
+﻿using Interfaces.Repository;
+
+namespace Api.Routes;
 
 public class ProductRoutes
 {
@@ -9,11 +11,26 @@ public class ProductRoutes
     }
     public void Start()
     {
-        Application.MapGet("/product", () =>
+        Application.MapGet("/product", (IProductRepository repo) =>
         {
-            return new List<Models.Product>();
+            return repo.Get();
         })
-        .WithName("GetWeatherForecast")
+        .WithName("GetProducts")
         .WithOpenApi();
+        
+        Application.MapGet("/product/{id}", (IProductRepository repo, Guid id) =>
+        {
+            return repo.Get(id);
+        })
+       .WithName("GetProductById")
+       .WithOpenApi();
+
+        Application.MapPost("/product", (IProductRepository repo, Models.Product product) =>
+        {
+            return repo.Insert(product);
+        })
+        .WithName("CreateProduct")
+        .WithOpenApi();
+
     }
 }
