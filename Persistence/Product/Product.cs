@@ -1,11 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using static System.Net.Mime.MediaTypeNames;
-using System.Diagnostics;
-using System.Xml.Linq;
-using Models;
-
-namespace Persistence;
+﻿namespace Persistence.Product;
 public class Product
 {
     [BsonId]
@@ -19,7 +12,7 @@ public class Product
     public List<string> Images { get; set; }
     public string SKU { get; set; }
 
-    public Product(Models.Product product)
+    public Product(Domain.Product.Product product)
     {
         Id = product.Id;
         Name = product.Name;
@@ -28,8 +21,8 @@ public class Product
         Images = product.Images;
         SKU = product.SKU;
     }
-    public Models.Product ToProduct()
+    public Domain.Product.Product ToProduct()
     {
-        return new Models.Product(Id, Name, Description, Price, Images, SKU);
+        return new Domain.Product.Product(Id, Name, Description, Price, Images, SKU);
     }
 }

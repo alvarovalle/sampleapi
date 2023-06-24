@@ -1,6 +1,9 @@
 using Api.Routes;
 using Interfaces.Repository;
-using Persistence;
+using Interfaces.UserCases;
+using Interfaces.Repository;
+using UserCases;
+using Persistence.Product;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductManager, ProductManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

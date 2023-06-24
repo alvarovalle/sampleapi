@@ -1,7 +1,4 @@
-﻿using Models;
-using MongoDB.Driver;
-
-namespace Persistence;
+﻿namespace Persistence;
 public class MainContext
 {
     public MainContext()
@@ -18,17 +15,17 @@ public class MainContext
     }
     private void Load()
     {
-        var connectionString = "mongodb://mongoadmin:LltF8Nx*yo@localhost:27017";
+        var connectionString = "mongodb://mongoadmin:VodkaRussa1974@localhost:27017";
         var client = new MongoClient(connectionString);
         db = client.GetDatabase("dbStoreFront");
     }
     private IMongoDatabase? db { get; set; }
 
-    public IMongoCollection<Persistence.Product> Product
+    public IMongoCollection<Persistence.Product.Product> Product
     {
         get
         {
-            return Db.GetCollection<Persistence.Product>("Product");
+            return Db.GetCollection<Persistence.Product.Product>("Product");
         }
     }
 }
