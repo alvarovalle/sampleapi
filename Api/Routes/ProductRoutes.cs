@@ -54,6 +54,5 @@ public class ProductRoutes
         })
         .WithName("DeleteProduct")
         .WithOpenApi();
-
     }
 }
