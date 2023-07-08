@@ -1,4 +1,3 @@
-global using Interfaces.Repository;
 global using Domain;
 global using MongoDB.Driver;
 global using MongoDB.Bson.Serialization.Attributes;
@@ -9,3 +8,6 @@ global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
 global using Domain.Product;
+global using Infrastructure.Persistence.Product;
+global using UserCases;
+global using Infrastructure.Persistence;

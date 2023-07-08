@@ -1,4 +1,5 @@
-﻿    namespace Persistence.Product;
+﻿namespace Infrastructure.Persistence.Product;
+using Interfaces.Persistence.Product;
 
 public class ProductRepository : IProductRepository
 {

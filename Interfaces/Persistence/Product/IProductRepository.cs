@@ -1,4 +1,4 @@
-﻿namespace Interfaces.Repository;
+﻿namespace Interfaces.Persistence.Product;
 
 public interface IProductRepository
 {

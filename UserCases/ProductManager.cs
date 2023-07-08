@@ -1,5 +1,5 @@
+using Interfaces.Persistence.Product;
 using Interfaces.UserCases;
-using Interfaces.Repository;
 
 namespace UserCases;
 
@@ -23,7 +23,22 @@ public class ProductManager : IProductManager
         var result = ProductRepository.Get(id);
         return result;
     }
-
+    
+    public Notifications Create(Domain.Product.Product product)
+    {
+        product.OnCreate = Insert;
+        product.OutputLog = Console.WriteLine; 
+        var result = product.Create();
+        return result;
+    }
+    public Notifications Modify(Domain.Product.Product product)
+    {       
+        product.OnModify = Update; 
+        product.OutputLog = Console.WriteLine;
+        var result = product.Modify();
+        return result;
+    }
+   
     public bool Insert(Domain.Product.Product product)
     {
         var result = ProductRepository.Insert(product);

@@ -1,4 +1,4 @@
-﻿namespace Persistence.Product;
+﻿namespace Infrastructure.Persistence.Product;
 public class Product
 {
     [BsonId]

@@ -36,14 +36,14 @@ public class ProductRoutes
 
         Application.MapPost("/product", (IProductManager srv, Domain.Product.Product product) =>
         {
-            return srv.Insert(product);
+            return srv.Create(product);
         })
         .WithName("CreateProduct")
         .WithOpenApi();
         
         Application.MapPut("/product", (IProductManager srv, Domain.Product.Product product) =>
         {
-            return srv.Update(product);
+            return srv.Modify(product);
         })
         .WithName("UpdateProduct")
         .WithOpenApi();
