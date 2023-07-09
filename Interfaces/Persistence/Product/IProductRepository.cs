@@ -2,7 +2,7 @@
 
 public interface IProductRepository
 {
-    IList<Domain.Product.Product> Get();
+    List<Domain.Product.Product> Get();
     Domain.Product.Product Get(Guid id);
     bool Insert(Domain.Product.Product product);
     bool Update(Domain.Product.Product product);

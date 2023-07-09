@@ -11,7 +11,7 @@ public class Product
     public Action<string> OutputLog { get; set; }
     public Func<Domain.Product.Product, bool> OnCreate { get; set; }
     public Func<Domain.Product.Product, bool> OnModify { get; set; }
- 
+
     public Product(Guid id, string name, string description, decimal price, List<string> images, string sKU)
     {
         Id = id;
@@ -32,46 +32,47 @@ public class Product
     }
     public Notifications Create()
     {
+        Id = Guid.NewGuid();
         OutputLog($"DOMAIN Product Create [SKU: {SKU}, Name: {Name}, Description: {Description}, Price:{Price}]");
-        var notifications = Validations();  
-             
-        if(notifications.Success)   
+        var notifications = Validations();
+
+        if (notifications.Success)
             notifications.Success = OnCreate(this);
-        
+
         return notifications;
     }
     public Notifications Modify()
-    {       
-         OutputLog($"DOMAIN Product Modify [SKU: {SKU}, Name: {Name}, Description: {Description}, Price:{Price}]");
-         var notifications = Validations();  
-             
-        if(notifications.Success)   
+    {
+        OutputLog($"DOMAIN Product Modify [SKU: {SKU}, Name: {Name}, Description: {Description}, Price:{Price}]");
+        var notifications = Validations();
+
+        if (notifications.Success)
             notifications.Success = OnModify(this);
-          
+
         return notifications;
     }
     public Notifications Validations()
     {
         var notifications = new Notifications();
-       
-        if(string.IsNullOrWhiteSpace(Name))
+
+        if (string.IsNullOrWhiteSpace(Name))
         {
-           notifications.Add("Name is required!");
+            notifications.Add("Name is required!");
         }
-        if(string.IsNullOrWhiteSpace(Description))
+        if (string.IsNullOrWhiteSpace(Description))
         {
-           notifications.Add("Description is required!");
+            notifications.Add("Description is required!");
         }
-        if(string.IsNullOrWhiteSpace(SKU))
+        if (string.IsNullOrWhiteSpace(SKU))
         {
-           notifications.Add("SKU is required!");
+            notifications.Add("SKU is required!");
         }
-        if(Price <= 0)
+        if (Price <= 0)
         {
-           notifications.Add("Price must be greater than zero!");
+            notifications.Add("Price must be greater than zero!");
         }
-       
-        if(notifications.Count > 0)
+
+        if (notifications.Count > 0)
             notifications.Success = false;
 
         return notifications;

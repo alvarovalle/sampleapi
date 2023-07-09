@@ -12,7 +12,7 @@ public class ProductManager : IProductManager
         ProductRepository = productRepository;
     }
 
-    public IList<Domain.Product.Product> Get()
+    public List<Domain.Product.Product> Get()
     {
         var result = ProductRepository.Get();
         return result;

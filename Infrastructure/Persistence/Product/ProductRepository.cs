@@ -12,7 +12,7 @@ public class ProductRepository : IProductRepository
         return true;
     }
 
-    public IList<Domain.Product.Product> Get()
+    public List<Domain.Product.Product> Get()
     {
         var conn = new MainContext();
         var _products = conn.Product.Find(p => true).ToList();
